@@ -1,0 +1,233 @@
+/* ==========================================================
+   Pie-IX Location : feuille de style
+   Thème : signalisation routière (asphalte, ligne jaune, plaques)
+   ========================================================== */
+
+:root {
+    --asphalte: #2e3236;
+    --ligne: #f5c518;
+    --papier: #f7f8f6;
+    --encre: #1d2125;
+    --gris: #5c646c;
+    --bordure: #d7dbd8;
+    --plaque: #1f4e9c;
+    --danger: #b42318;
+    --succes: #1e7b4a;
+    --signal: Bahnschrift, "DIN Alternate", "Arial Narrow", sans-serif;
+    --texte: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    background: var(--papier);
+    color: var(--encre);
+    font: 1rem/1.55 var(--texte);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+h1, h2, .logo, nav a, .btn, th {
+    font-family: var(--signal);
+}
+h1 { font-size: 2.25rem; line-height: 1.15; margin: 0 0 1.25rem; font-weight: 700; }
+h2 { font-size: 1.4rem; margin: 2.5rem 0 1rem; }
+
+a { color: var(--plaque); }
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+    outline: 3px solid var(--ligne);
+    outline-offset: 2px;
+}
+
+/* ---------- En-tête : la route ---------- */
+.route {
+    background: var(--asphalte);
+    color: #fff;
+    /* la ligne jaune pointillée au centre de la route */
+    background-image: repeating-linear-gradient(90deg, var(--ligne) 0 40px, transparent 40px 70px);
+    background-size: 100% 4px;
+    background-repeat: no-repeat;
+    background-position: bottom 10px left;
+    padding-bottom: 24px;
+}
+.route__contenu {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 1rem 1.25rem 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+.logo {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+.logo span { color: var(--ligne); font-weight: 400; }
+
+nav ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: .25rem; }
+nav a {
+    display: block;
+    color: #e6e8e6;
+    text-decoration: none;
+    padding: .45rem .8rem;
+    border-radius: 4px;
+}
+nav a:hover { background: rgba(255, 255, 255, .08); }
+nav a[aria-current="page"] { background: var(--ligne); color: var(--encre); }
+
+/* ---------- Contenu ---------- */
+main {
+    flex: 1;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2.5rem 1.25rem 3rem;
+}
+
+.entete-page {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+}
+.entete-page h1 { margin: 0; }
+
+.accueil h1 { font-size: clamp(2.25rem, 5vw, 3.5rem); max-width: 14ch; }
+.intro { font-size: 1.15rem; color: var(--gris); max-width: 55ch; }
+
+/* ---------- Boutons ---------- */
+.btn {
+    display: inline-block;
+    background: var(--asphalte);
+    color: #fff;
+    border: 2px solid var(--asphalte);
+    padding: .6rem 1.1rem;
+    border-radius: 4px;
+    font-size: 1rem;
+    text-decoration: none;
+    cursor: pointer;
+}
+.btn:hover { background: var(--encre); }
+.btn--sobre { background: transparent; color: var(--asphalte); }
+.btn--sobre:hover { background: #eceeec; }
+.actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.5rem; }
+
+/* ---------- Plaque d'immatriculation ---------- */
+.plaque {
+    display: inline-block;
+    font-family: var(--signal);
+    font-weight: 700;
+    letter-spacing: .06em;
+    color: var(--plaque);
+    background: #fff;
+    border: 2px solid var(--plaque);
+    border-radius: 4px;
+    padding: .05rem .45rem;
+    white-space: nowrap;
+}
+
+/* ---------- Tableaux ---------- */
+.tableau { overflow-x: auto; background: #fff; border: 1px solid var(--bordure); border-radius: 6px; }
+table { width: 100%; border-collapse: collapse; }
+th, td { padding: .75rem 1rem; text-align: left; border-bottom: 1px solid var(--bordure); vertical-align: middle; }
+th { font-weight: 600; color: var(--gris); background: #f0f2f0; }
+tbody tr:last-child td { border-bottom: 0; }
+tbody tr:hover { background: #fafbf9; }
+.num { text-align: right; font-variant-numeric: tabular-nums; }
+
+.actions-ligne { white-space: nowrap; text-align: right; }
+.actions-ligne form { display: inline; margin-left: .75rem; }
+.lien-danger {
+    background: none;
+    border: 0;
+    padding: 0;
+    color: var(--danger);
+    font: inherit;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+/* ---------- Formulaires ---------- */
+.formulaire { max-width: 560px; }
+.formulaire--carte { background: #fff; border: 1px solid var(--bordure); border-radius: 6px; padding: 1.25rem; align-self: start; }
+.formulaire--carte h2 { margin-top: 0; }
+.champ { margin-bottom: 1.1rem; border: 0; padding: 0; }
+label, legend { display: block; font-weight: 600; margin-bottom: .35rem; }
+input, select, textarea {
+    width: 100%;
+    font: inherit;
+    padding: .55rem .7rem;
+    border: 1px solid #b9bfbb;
+    border-radius: 4px;
+    background: #fff;
+}
+.erreur { color: var(--danger); margin: .3rem 0 0; font-size: .925rem; }
+.dates { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+.choix-voitures { display: grid; gap: .5rem; }
+.choix {
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+    font-weight: 400;
+    background: #fff;
+    border: 1px solid var(--bordure);
+    border-radius: 6px;
+    padding: .6rem .8rem;
+    cursor: pointer;
+}
+.choix input { width: auto; }
+.choix small { display: block; color: var(--gris); }
+.choix:has(input:checked) { border-color: var(--asphalte); box-shadow: inset 4px 0 0 var(--ligne); }
+
+.deux-colonnes { display: grid; grid-template-columns: 1fr 320px; gap: 1.5rem; }
+
+/* ---------- Billets de location (accueil) ---------- */
+.tickets { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1rem; }
+.ticket {
+    background: #fff;
+    border: 1px solid var(--bordure);
+    border-left: 6px solid var(--ligne);
+    border-radius: 6px;
+    padding: 1rem;
+    display: grid;
+    gap: .2rem;
+}
+.ticket__dates { color: var(--gris); font-size: .925rem; }
+.ticket__total { font-family: var(--signal); font-size: 1.25rem; margin-top: .4rem; }
+
+/* ---------- Messages ---------- */
+.flash { padding: .8rem 1rem; border-radius: 4px; margin: 0 0 1.5rem; }
+.flash--succes { background: #e3f3ea; color: var(--succes); }
+.flash--erreur { background: #fbe8e6; color: var(--danger); }
+.vide { color: var(--gris); }
+
+.visuel-cache { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+
+/* ---------- Pied de page ---------- */
+.pied { background: var(--asphalte); color: #c9cdca; text-align: center; padding: 1rem; font-size: .875rem; }
+
+/* ---------- Mobile ---------- */
+@media (max-width: 760px) {
+    .deux-colonnes, .dates { grid-template-columns: 1fr; }
+    h1 { font-size: 1.85rem; }
+}
+
+/* ---------- Ajouts : fiches (show) et boutons ---------- */
+.fiche { max-width: 640px; }
+.fiche dl { display: grid; grid-template-columns: 140px 1fr; gap: .5rem 1rem; margin: 1.25rem 0; }
+.fiche dt { font-weight: 600; color: var(--gris); }
+.fiche dd { margin: 0; }
+.actions form { display: inline; }
+.btn--danger { background: var(--danger); border-color: var(--danger); }
+.btn--danger:hover { background: #8f1c13; }
+.actions-ligne a + a { margin-left: .75rem; }
+input[type="submit"] { width: auto; }
